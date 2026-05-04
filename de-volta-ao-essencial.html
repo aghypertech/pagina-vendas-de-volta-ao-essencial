@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De volta ao Essencial — Uma jornada com Cristo</title>
+<meta name="description" content="Uma jornada de 30 dias para redescobrir o amor de Deus nas coisas simples — e ser transformado por dentro, de verdade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #A07840;
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE0;
+    --dark: #1A1610;
+    --dark-mid: #2E2820;
+    --dark-soft: #3D3528;
+    --text-main: #2A2218;
+    --text-secondary: #6B5E4A;
+    --text-muted: #9A8C78;
+    --white: #FFFFFF;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Raleway', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    background: var(--cream);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 24px 60px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 80% 60%, rgba(201,169,110,0.06) 0%, transparent 60%);
+  }
+
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .hero-cross::before,
+  .hero-cross::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+  .hero-cross::before { width: 4px; height: 100%; left: 50%; transform: translateX(-50%); }
+  .hero-cross::after { width: 100%; height: 4px; top: 30%; left: 0; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-quote {
+    border-left: 1px solid var(--gold-dark);
+    padding: 16px 20px;
+    text-align: left;
+    margin: 0 auto 48px;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-quote p {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .hero-quote span {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--dark);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba(201,169,110,0.3);
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,169,110,0.4);
+  }
+
+  .hero-price {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-price strong {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scroll-indicator span {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dark), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  .section {
+    padding: 80px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-dark), transparent);
+    max-width: 80px;
+  }
+
+  /* ── DOR ── */
+  .dor-section {
+    background: var(--dark);
+    padding: 80px 24px;
+  }
+
+  .dor-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .dor-section .section-label { color: var(--gold); }
+  .dor-section .section-label::after { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .dor-intro {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 48px;
+  }
+
+  .dor-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+
+  .dor-item.visible { opacity: 1; transform: translateX(0); }
+
+  .dor-dash {
+    color: var(--gold);
+    font-size: 20px;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+
+  .dor-text {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .dor-text strong { color: var(--cream); font-weight: 400; }
+
+  .dor-close {
+    margin-top: 48px;
+    padding: 28px;
+    border-left: 2px solid var(--gold-dark);
+    background: rgba(201,169,110,0.05);
+  }
+
+  .dor-close p {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.7;
+  }
+
+  /* ── HISTÓRIA ── */
+  .historia-section { background: var(--cream); }
+
+  .historia-text {
+    font-size: 18px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .historia-text strong { color: var(--text-main); font-weight: 500; }
+
+  .historia-destaque {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin: 40px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .historia-destaque p {
+    font-size: 19px;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.7;
+  }
+
+  /* ── PRODUTO ── */
+  .produto-section {
+    background: var(--dark-mid);
+    padding: 80px 24px;
+  }
+
+  .produto-inner { max-width: 720px; margin: 0 auto; }
+
+  .produto-section .section-label { color: var(--gold); }
+  .produto-section .section-label::after { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .produto-title {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .produto-subtitle {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 48px;
+  }
+
+  .produto-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .produto-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(201,169,110,0.05);
+    border: 1px solid rgba(201,169,110,0.1);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .produto-item:hover {
+    background: rgba(201,169,110,0.08);
+    border-color: rgba(201,169,110,0.2);
+  }
+
+  .produto-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 9px;
+  }
+
+  .produto-item-text {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .produto-item-text strong { color: var(--cream); font-weight: 500; }
+
+  .bonus-box {
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 2px;
+    padding: 28px;
+    background: rgba(201,169,110,0.04);
+  }
+
+  .bonus-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .bonus-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .bonus-item:last-child { border-bottom: none; }
+
+  .bonus-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold-dark);
+    letter-spacing: 0.05em;
+    min-width: 28px;
+    margin-top: 2px;
+  }
+
+  .bonus-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .bonus-text strong { color: var(--cream-dark); font-weight: 500; }
+
+  /* ── PARTES ── */
+  .partes-section { background: var(--cream-dark); }
+
+  .partes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+
+  @media (min-width: 600px) {
+    .partes-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .parte-card {
+    padding: 28px 24px;
+    background: var(--cream);
+    border-bottom: 2px solid var(--gold);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+
+  .parte-card.visible { opacity: 1; transform: translateY(0); }
+
+  .parte-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+  }
+
+  .parte-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 12px;
+  }
+
+  .parte-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .parte-days {
+    margin-top: 16px;
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--gold-dark);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── PARA QUEM ── */
+  .paraquem-section { background: var(--cream); }
+
+  .paraquem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .paraquem-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: all 0.5s ease;
+  }
+
+  .paraquem-item.visible { opacity: 1; transform: translateX(0); }
+
+  .paraquem-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    flex-shrink: 0;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .paraquem-icon::after {
+    content: '';
+    width: 6px;
+    height: 4px;
+    border-left: 1.5px solid var(--dark);
+    border-bottom: 1.5px solid var(--dark);
+    transform: rotate(-45deg) translateY(-1px);
+  }
+
+  .paraquem-text {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  /* ── DEPOIMENTOS ── */
+  .depo-section {
+    background: var(--dark);
+    padding: 80px 24px;
+  }
+
+  .depo-inner { max-width: 720px; margin: 0 auto; }
+  .depo-section .section-label { color: var(--gold); }
+  .depo-section .section-label::after { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .depo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .depo-card {
+    padding: 28px;
+    border-left: 2px solid var(--gold-dark);
+    background: rgba(255,255,255,0.02);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.5s ease;
+  }
+
+  .depo-card.visible { opacity: 1; transform: translateY(0); }
+
+  .depo-quote {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .depo-author {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+  }
+
+  .depo-note {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(154,140,120,0.6);
+  }
+
+  /* ── GARANTIA ── */
+  .garantia-section { background: var(--cream-dark); }
+
+  .garantia-box {
+    border: 1px solid var(--gold-dark);
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    background: var(--cream);
+  }
+
+  .garantia-num {
+    font-size: clamp(56px, 12vw, 80px);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .garantia-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 24px;
+  }
+
+  .garantia-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .garantia-italic {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    background: var(--dark);
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,169,110,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-label {
+    justify-content: center;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .cta-section .section-label::after { display: none; }
+
+  .cta-title {
+    font-size: clamp(30px, 6vw, 48px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold-light); }
+
+  .cta-subtitle {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  .price-box {
+    margin-bottom: 32px;
+  }
+
+  .price-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .price-value {
+    font-size: clamp(44px, 10vw, 64px);
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-note {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .cta-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dark);
+    margin: 32px auto;
+  }
+
+  .cta-bonus-list {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-bonus-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .cta-bonus-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .cta-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--dark);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 32px rgba(201,169,110,0.35);
+    cursor: pointer;
+    border: none;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(201,169,110,0.5);
+    animation: none;
+  }
+
+  .cta-guarantee {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .cta-closing {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .cta-closing p {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .cta-closing strong {
+    display: block;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--dark-mid);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  /* ── FLOATING CTA ── */
+  .floating-cta {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    z-index: 100;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+  }
+
+  .floating-cta.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 32px rgba(201,169,110,0.35); }
+    50% { box-shadow: 0 4px 48px rgba(201,169,110,0.55); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .section { padding: 60px 20px; }
+    .dor-section, .produto-section, .depo-section, .cta-section { padding: 60px 20px; }
+    .garantia-box { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-cross"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Para quem sente que algo está faltando na fé</p>
+    <h1 class="hero-title">E se o que você procura<br>não estivesse <em>longe</em> —<br>mas escondido no que<br>você já tem?</h1>
+    <p class="hero-subtitle">Uma jornada de 30 dias para redescobrir o amor de Deus<br>nas coisas simples — e ser transformado por dentro, de verdade.</p>
+    <div class="hero-quote">
+      <p>"As pessoas não precisam de mais doutrina. Precisam compreender o amor que precisa ser praticado."</p>
+      <span>— Sacerdote católico</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#cta" class="btn-primary">Quero começar minha jornada →</a>
+      <p class="hero-price">E-book + 3 bônus gratuitos · <strong>R$ 27,90</strong> · Acesso imediato</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOR -->
+<section class="dor-section">
+  <div class="dor-inner">
+    <div class="section-label">Você se reconhece aqui?</div>
+    <p class="dor-intro">Muitas pessoas vivem a fé por fora — mas por dentro há uma secura que ninguém vê.</p>
+
+    <div class="dor-item">
+      <span class="dor-dash">—</span>
+      <p class="dor-text">Vai à Missa, reza, conhece os sacramentos — mas por dentro há uma secura. Uma sensação de que a fé virou <strong>hábito e o encontro real ficou para trás.</strong></p>
+    </div>
+    <div class="dor-item">
+      <span class="dor-dash">—</span>
+      <p class="dor-text">Carrega um passado pesado e uma voz que sussurra que você <strong>não é digno do amor de Deus</strong> — que pessoas assim não merecem.</p>
+    </div>
+    <div class="dor-item">
+      <span class="dor-dash">—</span>
+      <p class="dor-text">Sabe que Deus existe, acredita — mas <strong>nunca sentiu que esse amor era real para você.</strong> Nunca virou experiência. Nunca chegou ao coração.</p>
+    </div>
+    <div class="dor-item">
+      <span class="dor-dash">—</span>
+      <p class="dor-text">Serve, participa, está presente — mas perdeu o fervor. <strong>O desânimo foi chegando sem avisar</strong> e hoje a fé parece um peso, não uma alegria.</p>
+    </div>
+
+    <div class="dor-close">
+      <p>Se você se reconheceu em alguma dessas situações — este livro foi escrito para você. Não para o cristão perfeito. Para o que ainda está aprendendo a amar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRIA -->
+<section class="section historia-section">
+  <div class="section-label">De onde veio este livro</div>
+
+  <p class="historia-text">Sou Ministro da Sagrada Comunhão Eucarística. Mas por muito tempo fui à Igreja por obrigação — sem propósito, sem encontro real. Fiz minha Primeira Eucaristia quase aos 25 anos. Continuei caindo, continuei falhando, continuei incapaz de amar Cristo com a dignidade que Ele merece.</p>
+
+  <p class="historia-text">Foi no meio das quedas que fui pego na curva. Despertei um desejo de servir. Fiz formação, comecei a servir na Igreja, participar dos sacramentos, andar nas comunidades. E algo foi mudando — devagar, sem que eu percebesse, até que olhei e tudo estava diferente.</p>
+
+  <p class="historia-text">Conversei com Sacerdotes. Perguntei qual era a maior dor espiritual que viam nas pessoas. A resposta foi simples e profunda:</p>
+
+  <div class="historia-destaque">
+    <p><strong>Amor.</strong> As pessoas não compreendem o amor que precisa ser praticado. Não aprenderam a amar as coisas que parecem pequenas — mas que na verdade são de grande importância. O Cristo Eucarístico da Missa embaixo de uma árvore é o mesmo da maior Catedral do mundo.</p>
+  </div>
+
+  <p class="historia-text">Foi por isso que escrevi este livro. Não para ensinar teologia. Para ajudar você a encontrar o que sempre esteve aqui — <strong>o amor de Deus escondido no essencial.</strong></p>
+</section>
+
+<!-- PRODUTO -->
+<section class="produto-section">
+  <div class="produto-inner">
+    <div class="section-label">O que você vai receber</div>
+    <h2 class="produto-title">De volta ao Essencial —<br>uma jornada com Cristo</h2>
+    <p class="produto-subtitle">Descubra o amor que você não aprendeu a ver e passe a amar o que realmente importa</p>
+
+    <div class="produto-items">
+      <div class="produto-item">
+        <div class="produto-dot"></div>
+        <p class="produto-item-text"><strong>30 dias de jornada</strong> — cada dia com Palavra da Escritura, Reflexão, Prática concreta e Oração final. Não é leitura — é experiência.</p>
+      </div>
+      <div class="produto-item">
+        <div class="produto-dot"></div>
+        <p class="produto-item-text"><strong>3 partes progressivas</strong> — Despertar (dias 1–10), Aprofundar (dias 11–20) e Transformar (dias 21–30). Uma jornada com começo, meio e fim real.</p>
+      </div>
+      <div class="produto-item">
+        <div class="produto-dot"></div>
+        <p class="produto-item-text"><strong>Abertura com testemunho real</strong> — escrita de dentro, de quem viveu o que ensina. Não é teoria — é vida.</p>
+      </div>
+      <div class="produto-item">
+        <div class="produto-dot"></div>
+        <p class="produto-item-text"><strong>Encerramento e carta de envio</strong> — para que o último dia não seja o fim, mas o começo do que vem.</p>
+      </div>
+      <div class="produto-item">
+        <div class="produto-dot"></div>
+        <p class="produto-item-text"><strong>Acesso imediato</strong> — recebe no e-mail assim que confirmar o pagamento. Começa hoje.</p>
+      </div>
+    </div>
+
+    <div class="bonus-box">
+      <div class="bonus-label">Bônus gratuitos inclusos na compra</div>
+      <div class="bonus-item">
+        <span class="bonus-num">01</span>
+        <p class="bonus-text"><strong>Cartão de oração dos 30 dias</strong> — digital, para salvar no celular e ter a oração de cada dia sempre à mão</p>
+      </div>
+      <div class="bonus-item">
+        <span class="bonus-num">02</span>
+        <p class="bonus-text"><strong>Marca-página com a oração do dia</strong> — para imprimir e usar durante a leitura</p>
+      </div>
+      <div class="bonus-item">
+        <span class="bonus-num">03</span>
+        <p class="bonus-text"><strong>Guia: Como participar da Missa com o coração aberto</strong> — para que cada celebração seja um encontro real com Cristo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTES -->
+<section class="section partes-section">
+  <div class="section-label">A jornada em 3 etapas</div>
+  <div class="partes-grid">
+    <div class="parte-card">
+      <div class="parte-num">Parte 1</div>
+      <div class="parte-title">Despertar</div>
+      <p class="parte-desc">Reconhecer o amor que já está presente mas ainda não foi visto. Receber o que sempre esteve aqui.</p>
+      <p class="parte-days">Dias 1 — 10</p>
+    </div>
+    <div class="parte-card">
+      <div class="parte-num">Parte 2</div>
+      <div class="parte-title">Aprofundar</div>
+      <p class="parte-desc">Deixar o amor descer da cabeça para o coração. A Missa, o silêncio, a paz, o serviço.</p>
+      <p class="parte-days">Dias 11 — 20</p>
+    </div>
+    <div class="parte-card">
+      <div class="parte-num">Parte 3</div>
+      <div class="parte-title">Transformar</div>
+      <p class="parte-desc">O amor que foi recebido vai para o mundo — para as relações difíceis, para a missão de vida.</p>
+      <p class="parte-days">Dias 21 — 30</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="section paraquem-section">
+  <div class="section-label">Este livro é para você se</div>
+  <div class="paraquem-list">
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Quer que a fé saia da cabeça e chegue ao coração de verdade</p>
+    </div>
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Está cansado de uma religiosidade sem encontro real com Cristo</p>
+    </div>
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Quer redescobrir a Eucaristia e a Santa Missa como encontro vivo</p>
+    </div>
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Precisa aprender a amar as pessoas difíceis — a começar pelas de casa</p>
+    </div>
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Quer ser transformado — não só informado</p>
+    </div>
+    <div class="paraquem-item">
+      <div class="paraquem-icon"></div>
+      <p class="paraquem-text">Tem um passado pesado e ainda acredita que pode recomeçar</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depo-section">
+  <div class="depo-inner">
+    <div class="section-label">O que dizem quem percorreu a jornada</div>
+    <div class="depo-grid">
+      <div class="depo-card">
+        <p class="depo-quote">"Cheguei no Dia 7 e não consegui parar de chorar. Fazia anos que não sentia que Deus me amava de verdade. Esse livro mudou isso."</p>
+        <p class="depo-author">— Geovanna, São Paulo - SP</p>
+      </div>
+      <div class="depo-card">
+        <p class="depo-quote">"Fui à Missa diferente pela primeira vez em anos. Entrei sabendo que ia encontrar Cristo — não só assistir a uma celebração."</p>
+        <p class="depo-author">— Henrique, Juiz de Fora - MG</p>
+      </div>
+      <div class="depo-card">
+        <p class="depo-quote">"O Dia 23 — sobre o perdão — foi o mais difícil e o mais libertador da minha vida. Eu não sabia que ainda estava carregando aquilo."</p>
+        <p class="depo-author">— Ana Clara, Recife - PE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="section garantia-section">
+  <div class="section-label">Sua segurança</div>
+  <div class="garantia-box">
+    <div class="garantia-num">7</div>
+    <div class="garantia-label">Dias de garantia total</div>
+    <p class="garantia-text">Se nos primeiros 7 dias você sentir que este livro não é para você — devolvemos 100% do valor. Sem perguntas, sem burocracia.</p>
+    <p class="garantia-italic">Porque o amor não se impõe. E nós confiamos no que entregamos.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="section-label">Comece hoje</div>
+    <h2 class="cta-title">Você está a um passo<br>de <em>voltar ao essencial</em></h2>
+    <p class="cta-subtitle">Trinta dias. Uma jornada. Uma transformação real.</p>
+
+    <div class="price-box">
+      <p class="price-label">E-book + 3 bônus gratuitos</p>
+      <p class="price-value">R$ 27,90</p>
+      <p class="price-note">Acesso imediato · Pagamento seguro via Hotmart</p>
+    </div>
+
+    <div class="cta-divider"></div>
+
+    <div class="cta-bonus-list">
+      <div class="cta-bonus-item">
+        <div class="cta-bonus-dot"></div>
+        <span>Bônus 1 — Cartão de oração dos 30 dias</span>
+      </div>
+      <div class="cta-bonus-item">
+        <div class="cta-bonus-dot"></div>
+        <span>Bônus 2 — Marca-página com oração do dia</span>
+      </div>
+      <div class="cta-bonus-item">
+        <div class="cta-bonus-dot"></div>
+        <span>Bônus 3 — Guia: Participar da Missa com o coração aberto</span>
+      </div>
+    </div>
+
+    <div class="cta-btn-wrap">
+      <a href="https://pay.hotmart.com/N105684032B" class="btn-cta">Quero começar minha jornada →</a>
+      <p class="cta-guarantee">Garantia de 7 dias · Pagamento 100% seguro</p>
+    </div>
+
+    <div class="cta-closing">
+      <p>Há graça e misericórdia suficientes para todos nós.</p>
+      <strong>Amor é o único caminho.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>De volta ao Essencial — uma jornada com Cristo<br>
+  Produto digital · Distribuído via Hotmart · Garantia de 7 dias<br>
+  © 2025 · Todos os direitos reservados</p>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+  <a href="#cta" class="btn-primary" style="font-size:13px; padding:14px 32px;">Garantir meu acesso — R$ 27,90 →</a>
+</div>
+
+<script>
+  // Intersection Observer para animações de scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.dor-item, .parte-card, .paraquem-item, .depo-card').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Stagger delay para items em sequência
+  document.querySelectorAll('.dor-item').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+  document.querySelectorAll('.parte-card').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.15}s`;
+  });
+  document.querySelectorAll('.paraquem-item').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.08}s`;
+  });
+  document.querySelectorAll('.depo-card').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.12}s`;
+  });
+
+  // Floating CTA aparece após scroll
+  const floatingCta = document.getElementById('floatingCta');
+  let lastScrollY = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+
+    if (scrollY > heroHeight * 0.8) {
+      floatingCta.classList.add('show');
+    } else {
+      floatingCta.classList.remove('show');
+    }
+
+    // Esconde quando chega na seção CTA final
+    const ctaSection = document.getElementById('cta');
+    const ctaTop = ctaSection.getBoundingClientRect().top;
+    if (ctaTop < window.innerHeight * 0.5) {
+      floatingCta.classList.remove('show');
+    }
+
+    lastScrollY = scrollY;
+  });
+
+  // Smooth scroll para links internos
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
